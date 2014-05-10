@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+
+{% block title %} Blog {% endblock %}
+
+{% block head_css %}
+    {{ block.super }}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/paginator1.css" media="all"></link>
+{% endblock %}
+
+{% block blog_content %}
+{% block blog_content_pre %}   {% endblock %}
+<div class="articles">
+    {% for c in object_list %}
+    <article class="block">
+        <header>
+            <h2><a href="{{ home_page }}/blog/articles/{{ c.id }}"> {{ c.title }}</a></h2>
+            <div>Posted by <span class="author">{{ c.author_id }}</span> at {{ c.created|date:"Y-m-d h:i:s" }},
+            <span class="clicks"> Clicks(<span class="click">{{ c.clicks }}</span>), </span>
+            <span class="category">Category
+                <a href="{{ home_page }}/blog/category/{{ c.category_id.id }}">
+                {{ c.category_id }}
+                </a>
+            </span>
+            </div>
+        </header>
+
+        <section>
+        {{ c.pagebreak|safe }}
+        </section>
+
+        <footer class="action">
+            <a class="btn btn-red btn-size" href="{{ home_page }}/blog/articles/{{ c.id }}">阅读全文</a>
+        </footer>
+    </article>
+    {% endfor %}
+
+    {% if object_list %}
+        <div class="blog-paginator">
+        {% include "paginator.html" %}
+        </div>
+    {% endif %}
+
+</div>
+{% block blog_content_post %}   {% endblock %}
+{% endblock %}

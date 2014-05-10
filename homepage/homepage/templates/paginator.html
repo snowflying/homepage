@@ -1,0 +1,39 @@
+
+<div>
+    <div class="paginator-padding"></div>
+    <div class="paginator-right">
+        <div class="pagination">
+            <ul>
+                {% if page_object.has_previous %}
+                <li class="active previous-page">
+                    <a href="?page={{ page_object.previous_page_number }}" title="上一页">上一页</a>
+                </li>
+                {% else %}
+                <li class="no-active previous-page">上一页</li>
+                {% endif %}
+
+                {% for p in page_range %}
+                    {% if p == page_object.number %}
+                    <li class="current_page">
+                        {{ p }}
+                    {% else %}
+                    <li>
+                        <a href="?page={{ p }}" title="第{{ p }}页">{{ p }}</a>
+                    {% endif %}
+                    </li>
+                {% endfor %}
+
+                {% if page_object.has_next %}
+                <li class="active next-page">
+                    <a href="?page={{ page_object.next_page_number }}" title="下一页">下一页</a>
+                </li>
+                {% else %}
+                <li class="no-active previous-page">下一页</li>
+                {% endif %}
+                <li class="page-count"> 共{{ page_count }}页 </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

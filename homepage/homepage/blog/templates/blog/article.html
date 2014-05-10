@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+
+{% block title %} {{ object.title }} {% endblock %}
+
+{% block blog_content %}
+<div class="article">
+    <article class="block">
+        <header>
+            <h2><a href="{{ home_page }}/blog/articles/{{ object.id }}"> {{ object.title }}</a></h2>
+            <div>
+            Posted by <span class="author">{{ object.author_id }}</span> at {{ object.created|date:"Y-m-d h:i:s" }},
+            <span class="clicks"> Clicks(<span class="click">{{ object.clicks }}</span>), </span>
+            <span class="category">Category
+                <a href="{{ home_page }}/blog/category/{{ object.category_id.id }}">
+                {{ object.category_id }}
+                </a>
+            </span>
+
+            </div>
+        </header>
+
+        <section>
+        {{ object.content|safe }}
+        </section>
+    </article>
+
+    {% include "duoshuo.html" %}
+</div>
+{% endblock %}

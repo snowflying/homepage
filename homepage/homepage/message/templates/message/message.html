@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block head_css %}
+    {{ block.super }}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style-base-1.css" media="all"></link>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/article1.css" media="all"></link>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}message/css/message.css" media="all"></link>
+{% endblock %}
+
+{% block main %}
+
+<div class="message">
+    <div class="block description">
+    你可以使用<a class="duoshuo" target="_blank" href="http://www.duoshuo.com">多说</a>来给我留言，虽然它是个评论插件。
+    </div>
+
+{% comment %}
+<div class="message">
+    <div class="block message-contents">
+        {% for m in object_list %}
+        <div class="inline-block message-content">
+            <ul>
+                <li>
+                    <span class="username"> {{ m.username }} </span> |
+                    <span class="datetime"> {{ m.post_date }} </span>
+                    <a class="reply" href="javascript:void(0);" title="回复这条留言" major="{{ m.id }}" minor=""></a>
+                </li>
+                <li class="content"> {{ m.content }} </li>
+            </ul>
+
+            {% for r in m.reply %}
+            <div class="block message-content">
+                <ul>
+                    <li>
+                        <span class="username"> {{ r.username }} </span> |
+                        <span class="datetime"> {{ r.post_date }} </span>
+                        <a class="reply" href="javascript:void(0);" title="回复这条留言" major="{{ m.id }}" minor="{{ r.id }}"></a>
+                    </li>
+                    <li class="content">
+                        <span class="reply-head">回复
+                        {% if r.reply_name %}
+                            {{ r.reply_name }} :
+                        {% else %}
+                            {{ m.username }} :
+                        {% endif %}
+                        </span>
+                        {{ r.content }}
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+
+            <div class="block reply-message reply{{ m.id }}">
+                <form class="reply-form" action="" method="POST"> {% csrf_token %}
+                    <input type="hidden" class="major-id" name="major_id" value="" />
+                    <input type="hidden" class="minor-id" name="minor_id" value="" />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="message">回复</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <td><input class="submit" type="submit" value="回复" /></td>
+                        </tfoot>
+                        <tbody>
+                            <tr class="row">
+                                <td><input class="username" type="text" name="username" placeholder="昵称（必填）" /></td>
+                                <td><input class="email" type="text" name="email" placeholder="邮箱（必填）" /></td>
+                            </tr>
+                            <tr class="row">
+                                <td colspan="2"><input class="site" type="text" name="site" placeholder="网站（可填）" /></td>
+                            </tr>
+                            <tr class="row">
+                                <td colspan="2"><textarea class="content" name="content" placeholder="您的留言回复（必填）"></textarea></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </form>
+            </div>
+
+        </div>
+        {% endfor %}
+
+
+        {% if object_list %}
+        <div class="message-pagination">
+            <div class="paginator-padding"></div>
+            <div class="paginator-right">
+                {% include "paginator.html" %}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {% else %}
+        <div class="no-message">
+            这是我的留言板，您可以给我留言
+        </div>
+        {% endif %}
+
+    </div>
+
+    <div class="block add-message">
+        <div class="message">请留下您的足迹 </div>
+        <form action="" method="POST"> {% csrf_token %}
+            <div class="row">
+                <input class="username" type="text" name="username" placeholder="昵称（必填）" />
+                <input class="email" type="text" name="email" placeholder="邮箱（必填）" />
+            </div>
+            <div class="row">
+                <input class="site" type="text" name="site" placeholder="网站（可填）" />
+            </div>
+            <div class="row">
+                <textarea class="message-content" name="content" placeholder="您的留言（必填）"></textarea>
+            </div>
+            <input class="submit" type="submit" value="留下您的足迹" />
+        </form>
+    </div>
+</div>
+{% endcomment %}
+
+    {% include "duoshuo.html" %}
+
+</div>  <!-- message -->
+
+{% endblock %}

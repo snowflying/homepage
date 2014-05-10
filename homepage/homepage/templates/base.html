@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="robots" content="noindex,nofollow" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="keywords" content="xgfone,sangay,三界,{% block keywords %}{% endblock %}">
+
+    <title>{% block title %} BASE {% endblock %} - {{ title_suffix }}</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/base.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style-base-1.css" media="all"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/base.js"></script>
+    {% block head_css %} {% endblock %}
+    {% block head_js %} {% endblock %}
+</head>
+
+<body id="top">
+    <!--  header -->
+    {% block header %}
+    <div class="header-wrapper">
+        <div class="header body-width">
+            <div class="logo">
+              <h1><a href="/"> xgfone</a> </h1>
+              <h3> 三界的站点 </h3>
+            </div>
+
+            {% comment %}
+             <div class="user">
+                <ul>
+                {% if user.is_authenticated %}
+                    <li>当前用户: <span> {{ user.username }} </span></li>
+                    <li><a href="{{ home_page }}/logout?next={{ current_path }}">退出</a></li>
+                    {% else %}
+                    <li><a href="{{ home_page }}/login?next={{ current_path }}">登录</a></li>
+                    <li>退出</li>
+                {% endif %}
+                </ul>
+            </div>
+            {% endcomment %}
+
+            <div class="menu">
+              <ul>
+                <li class="{% if current_page.0 == "" %}current{% endif %} header-nav">
+                    <a href="{{ home_page }}"> 首页 </a>
+                </li>
+                <li  class="{% if current_page.0 == "blog" %}current{% endif %} header-nav">
+                    <a href="{{ home_page }}/blog"> 博客 </a>
+                </li>
+                <li class="{% if current_page.0 == "website" %}current{% endif %} header-nav">
+                    <a href="{{ home_page }}/website"> 网站收藏 </a>
+                </li>
+                <li  class="{% if current_page.0 == "message" %}current{% endif %} header-nav">
+                    <a href="{{ home_page }}/message"> 留言板 </a>
+                </li>
+                <li  class="{% if current_page.0 == "about" %}current{% endif %} header-nav">
+                    <a href="{{ home_page }}/about"> 关于 </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    {% endblock %}
+    <!-- header end -->
+
+    <!-- wrapper -->
+    <div class="main body-width">
+        <div class="main-wrapper">
+        {% block main %}
+
+        {% endblock %}
+        </div>
+    </div>
+    <!-- wrapper end -->
+
+    <!-- footer -->
+    <div class="body-width footer-wrapper">
+        <div class="footer">
+        {% block footer %}
+            <p class="copyright">
+                &copy; 2013
+            {% if year > 2013 %}
+                - {{ year }}
+            {% endif %}
+                Copyright &nbsp;
+                <a href="/" title="{{ title_suffix }}">{{ title_suffix }}</a> &nbsp;
+                Powered by &nbsp;
+                <a href="http://www.djangoproject.com" target="_blank" title="Django">Django</a>
+            </p>
+
+            <p class="others">
+                <a href="{{ home_page }}/sitemap.xml">Sitemap</a>
+                |
+                <a href="/rss">RSS</a>
+                |
+                <a href="#top" class="back-to-top">Back to Top</a>
+            </p>
+
+            <span class="clearfix"></span>
+        {% endblock %}
+        </div>   <!-- footer-wrapper -->
+    </div>
+    <!-- footer end -->
+
+    <div id="back-to-top">
+        <a href="javascript:void(0)" title="返回顶部"></a>
+    </div>
+
+    <script type="text/javascript">
+    {% block body_js %}{% endblock %}
+    window.onload = function (){ {% block window_onload_js %} {% endblock %} }
+    document.ready = function() {
+    {% block document_ready_js %}
+        xgfone.back_to_top();
+        // xgfone.menu_mouser_event();
+        if (window.SyntaxHighlighter) syntaxhl_autoload();
+    {% endblock %}
+    };
+    </script>
+</body>
+</html>

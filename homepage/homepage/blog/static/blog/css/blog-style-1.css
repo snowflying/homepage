@@ -1,0 +1,42 @@
+/* ================== Blog Base ===================== */
+.blog .content{
+    float: left;
+    width: 70%;
+}
+.blog .nav{
+    float: right;
+    width: 30%;
+}
+.blog .nav-wrapper{
+    padding-left: 20px;
+}
+/* ==================== Blog Navigation =====================*/
+.blog .nav-wrapper ul{
+    padding-left: 20px;
+}
+.blog .nav-wrapper ul li{
+    padding-top: 5px;
+}
+.blog .nav-wrapper .name{
+    font-weight: bold;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+.blog .nav-wrapper .click-rank ul li span{
+    margin-left: 5px;
+}
+.blog .nav-wrapper .tags ul li{
+    display: inline-block;
+    padding: 5px;
+    margin-top: 5px;
+    background: rgba(200,200,200, 0.8);
+}
+.blog .nav-wrapper .date .year a{
+    padding-right: 5px;
+}
+.blog .nav-wrapper .quick-mark img{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 200px;
+    height: 250px;
+}

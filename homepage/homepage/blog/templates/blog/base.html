@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block head_css %}
+    {{ block.super }}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}blog/css/blog-style-1.css" media="all"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/article1.css" media="all"/>
+    {% include "syntaxhl.html" %}
+{% endblock %}
+
+{% block main %}
+<div class="blog">
+    <div class="content">
+        <div class="content-wrapper">
+        {% block blog_content %}
+        {% endblock %}
+        </div>
+    </div>
+
+    {% block blog_nav %}
+    <div class="nav">
+        <div class="nav-wrapper">
+            <div class="block main-nav category">
+                <div class="name"> 分类 </div>
+                <ul>
+                {% for c in categories %}
+                    <li> <a href="{{ home_page }}/blog/category/{{ c.id }}"> {{ c.name }}</a> </li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class="block main-nav tags">
+                <div class="name">标签云</div>
+                <ul>
+                {% for t in tags %}
+                    <li class="radius">
+                        <a href="{{ home_page }}/blog/tag/{{ t.id }}"> {{ t.name|capfirst }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class="block main-nav date">
+                <div class="name"> 按时间分类 </div>
+                <ul>
+                {% for y, v in dates.items %}
+                    {% for m in v %}
+                    <li class="year">
+                        <a href="{{ home_page }}/blog/date/{{ y }}/{{ m }}">
+                        {{ y }}年{{ m }}月
+                        </a>
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class="block main-nav lastest-update">
+                <div class="name">最近更新</div>
+                <ul>
+                {% for a in lastest_articles %}
+                    <li> <a href="{{ home_page }}/blog/articles/{{ a.id }}"> {{ a.title }} </a></li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class=" block main-nav click-rank">
+                <div class="name">点击排行榜</div>
+                <ul>
+                {% for c in click_articles %}
+                    <li>
+                        <a href="{{ home_page }}/blog/articles/{{ c.id }}"> {{ c.title }} </a>
+                        <span> {{ c.clicks }}</span>次
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class="block main-nav quick-mark">
+                <div class="name">二维码扫描访问</div>
+                <img alt="No Img" src="{{ STATIC_URL }}/images/two-dimensional-code.jpg" />
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <div class="clearfix"> </div>
+</div>
+{% endblock %}

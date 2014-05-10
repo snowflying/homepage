@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} Websites {% endblock %}
+{% block head_css %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}website/css/website.css">
+{% endblock %}
+
+{% block main %}
+<div class="website-wrapper">
+    <div class="website">
+        {% for row in object_list %}
+        <div class="row">
+            {% for obj in row %}
+            <div class="column">
+                <div class="block link">
+                    <div class="pic">
+                       <!--  <img alt src="/static/website/images/default.jpg" /> -->
+                       <img alt src="{{ obj.picture }}" />
+                    </div>
+
+                    <div class="site">
+                        <span class="name">网址:</span>
+                        <a target="_blank" href="{{ obj.site }}">{{ obj.name }}</a>
+                    </div>
+
+                    <div class="desc">
+                        <span class="name">描述:</span>
+                        <div class="content">{{ obj.description|safe }}</div>
+                    </div>
+                    <div class="clearfix"></div>
+
+
+
+                </div>
+            </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

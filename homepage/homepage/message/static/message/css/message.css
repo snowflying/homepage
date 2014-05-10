@@ -1,0 +1,9 @@
+.message{
+    margin: 0 auto;
+}
+.message .description{
+     text-align: center;
+}
+.message .description .duoshuo{
+    padding: 5px;
+}

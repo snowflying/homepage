@@ -1,0 +1,38 @@
+/*==================== Paginator =======================*/
+.current_page{
+    background: rgba(255,0,0, 0.5);
+}
+.no-active{
+    background: rgba(64,64,64, 0.5);
+}
+.pagination{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 560px;
+}
+.pagination ul li{
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    padding-top: 3px;
+    padding-right: 2px;
+    padding-left: 2px;
+    text-align: center;
+    vertical-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.pagination .previous-page, .pagination .next-page{
+    width: 60px;
+}
+.pagination .page-count{
+    width: 60px;
+}
+.paginator-padding{
+    float: left;
+}
+.paginator-right{
+    float: right;
+}

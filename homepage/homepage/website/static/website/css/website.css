@@ -1,0 +1,44 @@
+.website .row{
+}
+.website .row .column{
+    width: 50%;
+    float: left;
+}
+.website .row .column .link{
+    margin: 20px;
+}
+.website .row .column .link .pic{
+    float: left;
+    width: 190px;
+    height: 200px;
+    border: 1px dashed;
+}
+.website .row .column .link .pic img{
+    width: 100%;
+    height: 100%;
+}
+.website .row .column .link .name{
+    margin: 10px;
+    font-style: italic;
+}
+.website .row .column .link .site{
+    float: left;
+    width: 220px;
+}
+.website .row .column .link .desc{
+    float: left;
+    width: 220px;
+    vertical-align: top;
+}
+.website .row .column .link .desc .name{
+    width: 40px;
+    height: 100%;
+    float: left;
+}
+.website .row .column .link .desc .content{
+    margin-top: 10px;
+    width: 160px;
+    height: 100%;
+    float: left;
+}
+
